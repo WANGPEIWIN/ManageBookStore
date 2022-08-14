@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookMall.hotBook.mapper.HotMapper">
+    <select id="getHot" parameterType="hot" resultType="hot">
+        select h.id,b.id bookId,h.create_time createTime,b.book_name bookName,b.img_url imgUrl
+        from hot h,book b
+        <where>
+        <if test="bookName != null and bookName!=''">
+            and b.book_name like "%"#{bookName}"%"
+        </if>
+            and h.book_id=b.id
+        </where>
+    </select>
+</mapper>

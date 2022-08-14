@@ -1,0 +1,26 @@
+#端口号
+server:
+  port: 8080
+  #  转码
+  tomcat:
+    uri-encoding: UTF-8
+#数据库驱动
+spring:
+#  强制转换number为string类型
+  jackson:
+    generator:
+      write_numbers_as_strings: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://159.138.135.64:3306/book_store?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: wp1123
+#mybatis配置
+mybatis-plus:
+  #  别名
+  type-aliases-package: com.bookMall.*.entity
+  #  映射地址
+  mapper-locations: classpath:mapper/*.xml
+  #  日志
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
