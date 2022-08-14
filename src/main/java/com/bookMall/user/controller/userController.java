@@ -81,7 +81,6 @@ public class userController {
                     String token = tokenUtils.sign(user.getId());
                     System.out.println("hhhh");
                 }
-
             }
             if(!user.getRole().isEmpty()){
                 wrapper.eq("role",user.getRole());
@@ -92,6 +91,20 @@ public class userController {
             return failedResponse();
         }
 
+    }
+    @PatchMapping("/userInfo")
+    public responseJson selectUserInfo(@RequestBody user user){
+        try {
+            QueryWrapper<user> wrapper = new QueryWrapper<>();
+            if(!user.getUserName().isEmpty()){
+                //前端传用户名和密码过来,将其生成为token.
+                wrapper.like("user_name",user.getUserName());
+            }
+            return new responseJson(responseCode.SUCCESS,userService.list(wrapper));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return failedResponse();
+        }
     }
 
     @GetMapping("/user/{id}")
